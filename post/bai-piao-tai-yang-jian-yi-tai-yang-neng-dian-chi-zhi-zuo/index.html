@@ -1,0 +1,209 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>白嫖太阳——简易太阳能电池制作 | 白日梦</title>
+
+<link rel="shortcut icon" href="https://morningdream.github.io/favicon.ico?v=1662731359859">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://morningdream.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            白日梦
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1662731359859" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    白嫖太阳——简易太阳能电池制作
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-09-09 ·
+                    </time>
+                    
+                        <a href="https://morningdream.github.io/tag/Na50LbDnj/" class="post-tags">
+                            # 电子DIY
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="引言">引言</h1>
+<p>之前在B站上看到工科男孙老师做了一个可以持续供电3.3V的太阳能小电池，电路比较简单，也可以给低功耗单片机提供一些续航，比较实用，于是就想复刻一个。<br>
+视频链接：<a href="https://www.bilibili.com/video/BV16W4y1U7tA?share_source=copy_web&amp;vd_source=c83accba79bf174ed7303756578c4f59">我做了一个稳定输出3.3V的太阳能电池</a></p>
+<!-- more -->
+<h1 id="元器件采购">元器件采购</h1>
+<p>由于UP主在立创开源上分享了项目，于是我就上立创fork这个项目，然后就准备采购原件，博主采用的TI的TPS63900，我在淘宝上发现这个芯片价格在200元以上，换算成电价的话，怕是白嫖太阳一辈子也挣不回来了，白嫖不成反被嫖，就在准备放弃这个项目的时候，突然看到了评论区有人说可以采用国产电荷泵来改一下这个电路，这颗芯片就是PW5410B，说干就干，研究了芯片资料后发现这个芯片还是无法完美替代TPS63900，TI这个芯片最牛皮的地方就是低功耗，PW5410B就对于这个差很多，但是升压降压是都可以，而且外围电路比较简单。</p>
+<h2 id="pw5410b优劣">PW5410B优劣</h2>
+<p>将原工程使用的TI的TPS63900替换为国产PW5410B<br>
+优点：价格便宜 3毛一片 平替<br>
+缺点：输出电流仅有250mA，小于TPS63900的400mA；静态待机电流为1uA，大于TPS63900的75nA；</p>
+<h1 id="电路设计">电路设计</h1>
+<p>在原作者基础上，参考PW5410B的典型电路进行了全新的设计<br>
+<img src="https://s3.bmp.ovh/imgs/2022/09/09/cdd844c9c2de67a7.png" alt="原理图" loading="lazy"><br>
+<img src="https://s3.bmp.ovh/imgs/2022/09/09/3e07fe31ea01df12.png" alt="PCB图" loading="lazy"><br>
+项目链接：<a href="https://oshwhub.com/captain188/solar_copy">微型太阳能充电电池</a></p>
+<h1 id="成品">成品</h1>
+<p>PCB加工白嫖了嘉立创的，元器件采购主要就是非晶硅的太阳能电池板，淘宝搜索ETC 非晶硅电池<br>
+<img src="https://s3.bmp.ovh/imgs/2022/09/09/40a6ca724389f480.png" alt="正面" loading="lazy"><br>
+<img src="https://s3.bmp.ovh/imgs/2022/09/09/d1e7866bf19db896.png" alt="背面" loading="lazy"></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://morningdream.github.io/post/ji-lu-yi-ci-lu-ying/" class="post-title gt-a-link">
+                    记录一次露营
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/bai-piao-tai-yang-jian-yi-tai-yang-neng-dian-chi-zhi-zuo/" class="leancloud_visitors" data-flag-title="白嫖太阳——简易太阳能电池制作">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'HABcmvP2bHPMjbvRXIEBPs60-gzGzoHsz',
+		appKey: 'V1CFNEcAEj4Y7A3nlDWO0Yra',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">白天做梦</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://morningdream.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
